@@ -32,7 +32,7 @@ def index():
 
 
 @app.route('/delete/<int:id>')
-def deleteadpowjpoidjwpojddw(id):
+def delete(id):
     task_to_delete = Todo.query.get_or_404(id)
 
     try:
@@ -40,10 +40,10 @@ def deleteadpowjpoidjwpojddw(id):
         db.session.commit()
         return redirect('/')
     except:
-        return 'n conseguismo deletar'
+        return 'Was not possible to delete this task'
 
-@app.route('/atualiza/<int:id>',methods=['GET','POST'])
-def updatedwdopwdpkwpdkpwokdpowkopdkpo(id):
+@app.route('/update/<int:id>',methods=['GET','POST'])
+def update(id):
     task= Todo.query.get_or_404(id)
     if request.method == 'POST':
         task.content = request.form['content']
@@ -51,7 +51,7 @@ def updatedwdopwdpkwpdkpwokdpowkopdkpo(id):
             db.session.commit()
             return redirect('/')
         except:
-            return 'cu'
+            return 'Was not possible to update this task'
 
     else:
         return render_template('update.html',task=task)
